@@ -4,6 +4,7 @@ click==8.1.8
 cmake==3.29.3
 colorama==0.4.6
 Flask==3.1.0
+Flask-Mail==0.9.1  # Added Flask-Mail for email functionality
 Flask-MySQL==1.6.0
 Flask-MySQLdb==2.0.0
 gunicorn==23.0.0
