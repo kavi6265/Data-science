@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, redirect, url_for, flash, session, render_template_string, send_file, Mail, Message, Response
+from flask import Flask, render_template, request, redirect, url_for, flash, session, render_template_string, send_file, Response
 import mysql.connector
 import re
 import cv2
@@ -661,4 +661,4 @@ def generate_frames():
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r')
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
