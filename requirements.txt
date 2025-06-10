@@ -1,7 +1,7 @@
 absl-py==2.1.0
 blinker==1.9.0
 click==8.1.8
-cmake==3.29.3          # Latest stable version; 4.x isn't available on PyPI
+cmake==3.29.3
 colorama==0.4.6
 Flask==3.1.0
 Flask-MySQL==1.6.0
@@ -21,7 +21,7 @@ mysql-connector==2.2.9
 mysql-connector-python==8.0.23
 mysqlclient==2.2.7
 namex==0.0.8
-numpy==2.3.0           # Fully supports Python 3.12
+numpy==2.3.0
 opencv-python==4.11.0.86
 optree==0.14.0
 packaging==24.2
@@ -29,7 +29,7 @@ pip==25.1.1
 protobuf==5.29.3
 Pygments==2.19.1
 PyMySQL==1.1.1
-pywin32==306           # Version 308+ not on PyPI for 3.12; 306 works well
+pywin32                # Removed version pin — use latest compatible
 rich==13.9.4
 scikit-learn==1.6.1
 scipy==1.15.2
