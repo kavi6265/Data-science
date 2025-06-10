@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, redirect, url_for, flash, session, render_template_string, send_file, Response
+from flask import Flask, render_template, request, redirect, url_for, flash, session, render_template_string, send_file, Mail, Message, Response
 import mysql.connector
 import re
 import cv2
