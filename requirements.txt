@@ -29,7 +29,7 @@ pip==25.1.1
 protobuf==5.29.3
 Pygments==2.19.1
 PyMySQL==1.1.1
-pywin32==312
+pywin32==313
 rich==13.9.4
 scikit-learn==1.6.1
 scipy==1.15.2
