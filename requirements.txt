@@ -4,6 +4,7 @@ click==8.1.8
 cmake==4.0.2
 colorama==0.4.6
 Flask==3.1.0
+Flask-MySQL==1.6.0
 Flask-MySQLdb==2.0.0
 gunicorn==23.0.0
 h5py==3.13.0
@@ -15,6 +16,9 @@ markdown-it-py==3.0.0
 MarkupSafe==3.0.2
 mdurl==0.1.2
 ml_dtypes==0.5.1
+mysql==0.0.3
+mysql-connector==2.2.9
+mysql-connector-python==8.0.23
 mysqlclient==2.2.7
 namex==0.0.8
 numpy==2.2.3
@@ -23,8 +27,8 @@ optree==0.14.0
 packaging==24.2
 protobuf==5.29.3
 Pygments==2.19.1
-PyMySQL==1.1.1  # Only if needed
-pywin32==308  # Windows only; remove if deploying to Linux
+PyMySQL==1.1.1
+pywin32==308
 rich==13.9.4
 scikit-learn==1.6.1
 scipy==1.15.2
