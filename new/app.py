@@ -661,4 +661,4 @@ def generate_frames():
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r')
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
