@@ -29,7 +29,6 @@ opencv-python==4.11.0.86
 optree==0.14.0
 packaging==24.2
 protobuf==5.29.3
-pip==25.1.1
 Pygments==2.19.1
 PyMySQL==1.1.1
 rich==13.9.4
