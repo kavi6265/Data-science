@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request, redirect, url_for, flash, session, render_template_string, send_file, Response
+from flask import Flask, render_template, request, redirect, url_for, flash, session, render_template_string, jsonify, send_file, Response
 import mysql.connector
 import re
 import cv2
@@ -16,7 +16,10 @@ import uuid;
 ##import tempfile
 ##import imghdr
 import face_recognition  # Add this to the top
-
+from math import radians, cos, sin, asin, sqrt
+from geopy.distance import geodesic
+import re
+import googlemaps
 import os
 
 app = Flask(__name__)
@@ -327,11 +330,37 @@ def register_face():
 
     return render_template('index.html')
 
-
-
 @app.route('/mark_attendance', methods=['GET', 'POST'])
 def mark_attendance():
     if request.method == 'POST':
+        # === Step 1: Get location from form ===
+        lat = request.form.get('latitude')
+        lon = request.form.get('longitude')
+
+        if not lat or not lon:
+            flash("Location not found. Please enable location.", "error")
+            return redirect(url_for('mark_attendance'))
+
+        try:
+            user_location = (float(lat), float(lon))
+        except Exception as e:
+            flash(f"Invalid location format: {str(e)}", "error")
+            return redirect(url_for('mark_attendance'))
+
+        # === Step 2: Campus verification ===
+        CAMPUS_LOCATION = (11.398945025472061, 78.16072429806735)  # Your campus center
+        CAMPUS_RADIUS_KM = 1.0  # Radius in kilometers
+
+        distance = geodesic(CAMPUS_LOCATION, user_location).km
+        print("User Location:", user_location)
+        print("Campus Location:", CAMPUS_LOCATION)
+        print("Distance from campus:", distance, "km")
+
+        if distance > CAMPUS_RADIUS_KM:
+            flash("You are outside the campus. Attendance not allowed.", "error")
+            return redirect(url_for('mark_attendance'))
+
+        # === Step 3: Face Recognition Attendance Logic ===
         video_capture = cv2.VideoCapture(0)
         ret, frame = video_capture.read()
         video_capture.release()
@@ -365,9 +394,9 @@ def mark_attendance():
         for face in stored_faces:
             stored_encoding = np.frombuffer(face['face_data'], dtype=np.float64)
             match = face_recognition.compare_faces([stored_encoding], input_encoding)[0]
-            distance = face_recognition.face_distance([stored_encoding], input_encoding)[0]
+            distance_face = face_recognition.face_distance([stored_encoding], input_encoding)[0]
 
-            if match and distance < 0.6:
+            if match and distance_face < 0.6:
                 recognized_name = face['name']
                 recognized_unique_id = face['unique_id']
                 attendance_time = face['attendance_time']
